@@ -656,6 +656,44 @@ footer{
         border-right:3px solid #555!important;
     }
 
+    .author-card{
+        display:block!important;
+        width:fit-content!important;
+        margin:8mm auto!important;
+        background:#222!important;
+        border:1px solid #222!important;
+        box-shadow:none!important;
+        animation:none!important;
+        transform:none!important;
+    }
+
+    .author-content{
+        background:white!important;
+        color:#111!important;
+        padding:5mm 10mm!important;
+        box-shadow:none!important;
+    }
+
+    .author-title{
+        color:#555!important;
+    }
+
+    .author-name{
+        color:#111!important;
+        background:none!important;
+        -webkit-text-fill-color:#111!important;
+        animation:none!important;
+        filter:none!important;
+    }
+
+    .author-symbol{
+        color:#111!important;
+        background:white!important;
+        border:1px solid #555!important;
+        box-shadow:none!important;
+        animation:none!important;
+    }
+
     footer{
         color:#444!important;
     }
@@ -776,6 +814,12 @@ footer{
         id="pythonBtn"
         class="header-btn">
         🐍 دانلود کد مبدل عکس LCD
+    </button>
+
+    <button
+        id="libraryBtn"
+        class="header-btn">
+        📦 دانلود کتابخانه RobotixInnoBot
     </button>
 
 </header>
@@ -3317,10 +3361,15 @@ function openDownloadModal(type){
         downloadTitle.textContent =
             "🔐 رمز دریافت PDF";
 
-    }else{
+    }else if(type === "python"){
 
         downloadTitle.textContent =
             "🔐 رمز دریافت Python";
+
+    }else if(type === "library"){
+
+        downloadTitle.textContent =
+            "🔐 رمز دریافت کتابخانه RobotixInnoBot";
     }
 
     downloadPassword.value = "";
@@ -3396,6 +3445,23 @@ function downloadPython(){
 
 
 /* =========================================================
+   ROBOTIXINNOBOT LIBRARY DOWNLOAD
+========================================================= */
+
+function downloadLibrary(){
+
+    const libraryUrl =
+        "https://cdn.imgurl.ir/uploads/m765327_RobotixInnoBot_Library.rar";
+
+    window.open(
+        libraryUrl,
+        "_blank",
+        "noopener,noreferrer"
+    );
+}
+
+
+/* =========================================================
    PDF
 ========================================================= */
 
@@ -3452,6 +3518,10 @@ downloadConfirm.addEventListener(
         }else if(type === "python"){
 
             downloadPython();
+
+        }else if(type === "library"){
+
+            downloadLibrary();
         }
     }
 );
@@ -3517,6 +3587,31 @@ document
         }
 
         openDownloadModal("python");
+    }
+);
+
+
+/* =========================================================
+   ESC CLOSE MODAL
+========================================================= */
+
+document
+.getElementById("libraryBtn")
+.addEventListener(
+    "click",
+    ()=>{
+
+        if(
+            loginOverlay.style.display !==
+            "none"
+        ){
+            loginError.textContent =
+                "ابتدا وارد جزوه شوید.";
+            usernameInput.focus();
+            return;
+        }
+
+        openDownloadModal("library");
     }
 );
 
