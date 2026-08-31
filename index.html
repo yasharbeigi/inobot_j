@@ -1,34 +1,904 @@
-<!doctype html>
-<html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>صفر تا صد برنامه‌نویسی اینوبات</title>
+
 <style>
-:root{--bg:#07111f;--surface:#0c192b;--surface2:#10233a;--text:#f5f8ff;--muted:#a7b6c8;--line:#203a56;--cyan:#4de1ff;--violet:#9b7cff;--code:#050b13}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(900px 500px at 80% -10%,#173b63 0%,transparent 65%),var(--bg);color:var(--text);font-family:Vazirmatn,Tahoma,Arial,sans-serif;line-height:2}
-.top{position:sticky;top:0;z-index:20;height:72px;display:flex;align-items:center;gap:16px;padding:0 4vw;background:#07111fe8;backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-.logo{font-size:19px;font-weight:900;white-space:nowrap}.logo b{color:var(--cyan)}.search{margin-right:auto;width:min(420px,42vw);padding:10px 14px;border-radius:14px;border:1px solid var(--line);background:var(--surface);color:var(--text);outline:0}
-.layout{max-width:1540px;margin:auto;display:grid;grid-template-columns:310px minmax(0,1fr)}aside{position:sticky;top:72px;height:calc(100vh - 72px);overflow:auto;padding:24px 18px;border-left:1px solid var(--line);background:#07111f88}
-aside .side-title{font-weight:900;margin:0 8px 16px;color:var(--cyan)}aside a{display:flex;gap:10px;align-items:center;color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:10px;font-size:14px}aside a span{font-family:monospace;color:#637a91}aside a:hover{background:var(--surface2);color:white}
-main{padding:52px clamp(18px,5vw,80px)}.hero{padding:clamp(28px,5vw,64px);border:1px solid var(--line);border-radius:32px;background:linear-gradient(135deg,#102944,#0b1625 60%);box-shadow:0 30px 100px #0007;overflow:hidden;position:relative}
-.hero:after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;left:-100px;top:-100px;background:#4de1ff18;filter:blur(5px)}
-.kicker{color:var(--cyan);font-weight:800}h1{font-size:clamp(34px,6vw,68px);line-height:1.15;margin:8px 0 18px}.hero p{color:var(--muted);max-width:850px;font-size:18px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}.stat{background:#ffffff08;border:1px solid #ffffff12;border-radius:18px;padding:16px}.stat b{display:block;font-size:24px;color:white}
-.lessons{margin-top:36px}.lesson{margin:28px 0;padding:28px;border:1px solid var(--line);background:linear-gradient(145deg,#0c192b,#091522);border-radius:24px;scroll-margin-top:95px}.lesson-head{display:flex;gap:16px;align-items:flex-start}.num{min-width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,#1f6b82,#563e9a);font-weight:900}h2{margin:0 0 8px;font-size:25px}.lesson p{color:var(--muted);margin:0}
-.code-wrap{position:relative;margin-top:22px}pre{margin:0;background:var(--code);border:1px solid #1d3349;border-radius:18px;padding:24px;overflow:auto;direction:ltr;text-align:left;font:14px/1.65 Consolas,Monaco,monospace;color:#dff7ff;box-shadow:inset 0 1px #ffffff08}.copy{position:absolute;left:12px;top:12px;z-index:2;background:#14263a;border:1px solid #29445e;color:white;border-radius:10px;padding:6px 10px;cursor:pointer}
-.mini-note{margin-top:16px;padding:10px 14px;border-right:3px solid var(--violet);background:#9b7cff0d;color:#aebbd0;border-radius:8px;font-size:13px}
-.cover-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}.cover-card{padding:18px;border:1px solid var(--line);background:#ffffff06;border-radius:18px}footer{padding:50px;text-align:center;color:var(--muted)}
-@media(max-width:1000px){.layout{display:block}aside{position:static;height:auto;border-left:0;border-bottom:1px solid var(--line)}.stats{grid-template-columns:repeat(2,1fr)}.cover-grid{grid-template-columns:1fr}}
-@media(max-width:600px){.top{height:auto;min-height:64px;flex-wrap:wrap;padding:10px 4vw}.search{order:3;width:100%}.stats{grid-template-columns:1fr}main{padding:24px 12px}.lesson{padding:18px}pre{font-size:12px}}
-</style></head>
-<body>
-<header class="top"><div class="logo">📘 <b>صفر تا صد برنامه‌نویسی اینوبات</b></div><input id="search" class="search" placeholder="جستجوی درس، سنسور، موتور، سروو..."></header>
-<div class="layout"><aside><div class="side-title">فهرست جزوه</div><a href="#lesson-1"><span>01</span>آشنایی با اینوبات و اولین برنامه</a><a href="#lesson-2"><span>02</span>LED؛ اولین خروجی دیجیتال</a><a href="#lesson-3"><span>03</span>چهار LED؛ ساخت الگوی نوری</a><a href="#lesson-4"><span>04</span>کلیدها؛ تبدیل ورودی به تصمیم</a><a href="#lesson-5"><span>05</span>بیزر؛ تولید نت و توقف صدا</a><a href="#lesson-6"><span>06</span>پخش آهنگ‌های آماده</a><a href="#lesson-7"><span>07</span>سروو؛ کنترل زاویه</a><a href="#lesson-8"><span>08</span>هشت سروو؛ قرار دادن بازوها در موقعیت اولیه</a><a href="#lesson-9"><span>09</span>موتور؛ کنترل یک موتور</a><a href="#lesson-10"><span>10</span>حرکت دو سمت با speed</a><a href="#lesson-11"><span>11</span>سنسور فاصله صوتی</a><a href="#lesson-12"><span>12</span>سنسور فاصله نوری</a><a href="#lesson-13"><span>13</span>سنسور IR</a><a href="#lesson-14"><span>14</span>سنسور نور LDR</a><a href="#lesson-15"><span>15</span>دما و رطوبت</a><a href="#lesson-16"><span>16</span>RGB؛ کنترل یک پیکسل</a><a href="#lesson-17"><span>17</span>RGB؛ ساخت نوار رنگی</a><a href="#lesson-18"><span>18</span>تشخیص رنگ</a><a href="#lesson-19"><span>19</span>آرایه چهارگانه IR</a><a href="#lesson-20"><span>20</span>IMU؛ شتاب‌سنج</a><a href="#lesson-21"><span>21</span>IMU؛ ژیروسکوپ</a><a href="#lesson-22"><span>22</span>IMU؛ مغناطیس‌سنج</a><a href="#lesson-23"><span>23</span>IMU؛ دمای حسگر</a><a href="#lesson-24"><span>24</span>نمایش لوگو و پاک‌کردن نمایشگر</a><a href="#lesson-25"><span>25</span>نمایش متن</a><a href="#lesson-26"><span>26</span>ماژول LED روی پورت RJ</a><a href="#lesson-27"><span>27</span>کلید روی پورت RJ</a><a href="#lesson-28"><span>28</span>مانیتور داده پورت</a><a href="#lesson-29"><span>29</span>پروژه کامل: چراغ هوشمند با کلید و بیزر</a><a href="#lesson-30"><span>30</span>پروژه کامل: هشدار فاصله</a><a href="#lesson-31"><span>31</span>پروژه کامل: حرکت و توقف بر اساس فاصله</a><a href="#lesson-32"><span>32</span>پروژه کامل: نمایش وضعیت سنسور و RGB</a><a href="#lesson-33"><span>33</span>پروژه کامل: حرکت سروو به کمک سنسور فاصله</a><a href="#lesson-34"><span>34</span>مرجع پورت‌ها و اشیای عمومی</a><a href="#lesson-35"><span>35</span>نکات حرفه‌ای و خطاهای رایج</a></aside>
-<main><section class="hero"><div class="kicker">راهنمای آموزشی </div><h1>صفر تا صد برنامه‌نویسی اینوبات</h1>
-<p> </p>
-<div class="stats"><div class="stat"><b>35</b> درس و پروژه</div><div class="stat"><b>کد کامل</b> در مثال‌ها</div><div class="stat"><b>RJ 1–12</b> ساختار پورت‌ها</div><div class="stat"><b>   </b> </div></div>
-<div class="cover-grid"><div class="cover-card">🎯 آموزش از پایه تا پروژه</div><div class="cover-card">🧩 سنسور، موتور، سروو و نمایشگر</div><div class="cover-card">  </div></div>
-</section><section class="lessons"><article class="lesson" id="lesson-1">
-      <div class="lesson-head"><span class="num">01</span><div><h2>آشنایی با اینوبات و اولین برنامه</h2><p><br>این جزوه مسیر یادگیری برنامه‌نویسی اینوبات را از اولین برنامه تا ساخت پروژه‌های ترکیبی دنبال می‌کند.<br>هدف این است که هنرجو فقط نام دستورها را حفظ نکند؛ بلکه بداند هر دستور چه ورودی‌ای می‌گیرد، چه خروجی‌ای دارد،<br>در چه زمانی باید از آن استفاده کند و چگونه چند قابلیت را در یک برنامه ترکیب کند.<br><br>الگوی پایه برنامه:<br>1. افزودن فایل اصلی.<br>2. ساخت شیء ربات.<br>3. راه‌اندازی در setup.<br>4. اجرای منطق برنامه در loop.<br><br>در تمام مثال‌های این جزوه کد به صورت Sketch کامل ارائه شده تا بتوان آن را یک‌جا در محیط برنامه‌نویسی وارد کرد.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+:root{
+    --bg:#07111f;
+    --surface:#0c192b;
+    --surface2:#10233a;
+    --surface3:#142b45;
+    --text:#f5f8ff;
+    --muted:#a7b6c8;
+    --line:#203a56;
+    --cyan:#4de1ff;
+    --violet:#9b7cff;
+    --green:#43e6a3;
+    --red:#ff7676;
+    --code:#050b13;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    background:
+        radial-gradient(900px 500px at 80% -10%,#173b63 0%,transparent 65%),
+        var(--bg);
+    color:var(--text);
+    font-family:Tahoma,Arial,sans-serif;
+    line-height:2;
+}
+
+body.locked{
+    overflow:hidden;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.top{
+    position:sticky;
+    top:0;
+    z-index:100;
+    min-height:72px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:10px 4vw;
+    background:#07111fee;
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--line);
+    flex-wrap:wrap;
+}
+
+.logo{
+    font-size:19px;
+    font-weight:900;
+    white-space:nowrap;
+}
+
+.logo b{
+    color:var(--cyan);
+}
+
+.search{
+    margin-right:auto;
+    width:min(390px,35vw);
+    padding:11px 15px;
+    border-radius:13px;
+    border:1px solid var(--line);
+    background:var(--surface);
+    color:white;
+    outline:none;
+    font-family:inherit;
+}
+
+.search:focus{
+    border-color:var(--cyan);
+}
+
+.header-btn{
+    padding:10px 15px;
+    border-radius:12px;
+    border:1px solid #29445e;
+    background:linear-gradient(135deg,#1f6b82,#563e9a);
+    color:white;
+    font-family:inherit;
+    font-weight:900;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.header-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+
+.layout{
+    max-width:1550px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:300px minmax(0,1fr);
+}
+
+aside{
+    position:sticky;
+    top:72px;
+    height:calc(100vh - 72px);
+    overflow:auto;
+    padding:25px 18px;
+    border-left:1px solid var(--line);
+    background:#07111f88;
+}
+
+.side-title{
+    font-weight:900;
+    color:var(--cyan);
+    margin:0 8px 15px;
+}
+
+aside a{
+    display:flex;
+    gap:9px;
+    align-items:center;
+    color:var(--muted);
+    text-decoration:none;
+    padding:7px 10px;
+    border-radius:10px;
+    font-size:13px;
+}
+
+aside a:hover{
+    background:var(--surface2);
+    color:white;
+}
+
+aside a span{
+    font-family:monospace;
+    color:#637a91;
+}
+
+main{
+    padding:50px clamp(16px,5vw,75px);
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    padding:clamp(28px,5vw,60px);
+    border:1px solid var(--line);
+    border-radius:30px;
+    background:linear-gradient(135deg,#102944,#0b1625 60%);
+    box-shadow:0 30px 100px #0007;
+    overflow:hidden;
+    position:relative;
+}
+
+.kicker{
+    color:var(--cyan);
+    font-weight:900;
+}
+
+h1{
+    font-size:clamp(34px,6vw,65px);
+    line-height:1.2;
+    margin:7px 0 18px;
+}
+
+.hero p{
+    color:var(--muted);
+    max-width:900px;
+    font-size:17px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-top:28px;
+}
+
+.stat{
+    background:#ffffff08;
+    border:1px solid #ffffff12;
+    border-radius:18px;
+    padding:15px;
+}
+
+.stat b{
+    display:block;
+    font-size:22px;
+    color:white;
+}
+
+.cover-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-top:25px;
+}
+
+.cover-card{
+    padding:18px;
+    border:1px solid var(--line);
+    background:#ffffff06;
+    border-radius:18px;
+}
+
+/* =========================================================
+   LESSON
+========================================================= */
+
+.lesson{
+    margin:28px 0;
+    padding:28px;
+    border:1px solid var(--line);
+    background:linear-gradient(145deg,#0c192b,#091522);
+    border-radius:24px;
+    scroll-margin-top:95px;
+}
+
+.lesson:hover{
+    border-color:#315878;
+}
+
+.lesson-head{
+    display:flex;
+    gap:16px;
+    align-items:flex-start;
+}
+
+.num{
+    min-width:52px;
+    height:52px;
+    border-radius:16px;
+    display:grid;
+    place-items:center;
+    background:linear-gradient(135deg,#1f6b82,#563e9a);
+    font-weight:900;
+}
+
+h2{
+    margin:0 0 8px;
+    font-size:24px;
+}
+
+.lesson p{
+    color:var(--muted);
+    margin:0;
+}
+
+.code-wrap{
+    position:relative;
+    margin-top:22px;
+}
+
+pre{
+    margin:0;
+    background:var(--code);
+    border:1px solid #1d3349;
+    border-radius:18px;
+    padding:25px;
+    overflow:auto;
+    direction:ltr;
+    text-align:left;
+    font:14px/1.65 Consolas,Monaco,monospace;
+    color:#dff7ff;
+}
+
+.copy{
+    position:absolute;
+    left:12px;
+    top:12px;
+    z-index:2;
+    background:#14263a;
+    border:1px solid #29445e;
+    color:white;
+    border-radius:10px;
+    padding:6px 10px;
+    cursor:pointer;
+}
+
+.copy:hover{
+    background:#1c3855;
+}
+
+.mini-note{
+    margin-top:18px;
+    padding:12px 15px;
+    border-right:3px solid var(--violet);
+    background:#9b7cff0d;
+    color:#aebbd0;
+    border-radius:8px;
+    font-size:13px;
+}
+
+.lesson-tools{
+    display:flex;
+    gap:10px;
+    margin-top:18px;
+    flex-wrap:wrap;
+}
+
+.lesson-tag{
+    padding:5px 11px;
+    border-radius:20px;
+    background:#4de1ff10;
+    border:1px solid #4de1ff22;
+    color:#8deeff;
+    font-size:12px;
+}
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:#000b;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(430px,100%);
+    padding:30px;
+    border:1px solid var(--line);
+    border-radius:25px;
+    background:linear-gradient(145deg,#102944,#0b1625);
+    box-shadow:0 30px 100px #000c;
+}
+
+.modal-box h2{
+    margin:0 0 8px;
+}
+
+.modal-box p{
+    color:var(--muted);
+}
+
+.modal-input{
+    width:100%;
+    padding:13px;
+    border-radius:12px;
+    border:1px solid var(--line);
+    background:#07111f;
+    color:white;
+    outline:none;
+    font-size:16px;
+    margin:10px 0;
+}
+
+.modal-input:focus{
+    border-color:var(--cyan);
+}
+
+.modal-buttons{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+.modal-buttons button{
+    flex:1;
+    padding:11px;
+    border-radius:11px;
+    border:1px solid var(--line);
+    cursor:pointer;
+    font-family:inherit;
+    font-weight:bold;
+}
+
+.primary{
+    background:linear-gradient(135deg,#1f6b82,#563e9a);
+    color:white;
+}
+
+.secondary{
+    background:#14263a;
+    color:white;
+}
+
+.modal-error{
+    min-height:22px;
+    color:#ff8f8f;
+    text-align:center;
+    font-size:13px;
+}
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+#loginOverlay{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+        radial-gradient(900px 500px at 80% -10%,#173b63 0%,transparent 65%),
+        #07111f;
+    padding:20px;
+}
+
+#loginBox{
+    width:min(430px,100%);
+    padding:35px;
+    border:1px solid #203a56;
+    border-radius:27px;
+    background:linear-gradient(145deg,#102944,#0b1625);
+    box-shadow:0 30px 100px #0009;
+}
+
+#loginBox h2{
+    font-size:28px;
+}
+
+#loginBox p{
+    color:#a7b6c8;
+}
+
+.login-field{
+    margin-bottom:15px;
+}
+
+.login-field label{
+    display:block;
+    color:#a7b6c8;
+    font-size:14px;
+}
+
+.login-field input{
+    width:100%;
+    padding:12px;
+    border-radius:12px;
+    border:1px solid #203a56;
+    background:#07111f;
+    color:white;
+    font-size:16px;
+    outline:none;
+}
+
+#loginBtn{
+    width:100%;
+    padding:13px;
+    border:0;
+    border-radius:12px;
+    cursor:pointer;
+    background:linear-gradient(135deg,#1f6b82,#563e9a);
+    color:white;
+    font-weight:900;
+    font-size:16px;
+}
+
+#loginError{
+    min-height:24px;
+    color:#ff8f8f;
+    text-align:center;
+    margin-top:10px;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    padding:50px;
+    text-align:center;
+    color:var(--muted);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1000px){
+
+    .layout{
+        display:block;
+    }
+
+    aside{
+        position:static;
+        height:auto;
+        border-left:0;
+        border-bottom:1px solid var(--line);
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .cover-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:700px){
+
+    .top{
+        min-height:64px;
+    }
+
+    .logo{
+        width:100%;
+    }
+
+    .search{
+        order:3;
+        width:100%;
+        margin-right:0;
+    }
+
+    .header-btn{
+        flex:1;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    main{
+        padding:24px 12px;
+    }
+
+    .lesson{
+        padding:18px;
+    }
+
+    .lesson-head{
+        flex-direction:column;
+    }
+
+    pre{
+        font-size:12px;
+    }
+}
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+@media print{
+
+    @page{
+        size:A4;
+        margin:14mm 12mm;
+    }
+
+    body{
+        background:white!important;
+        color:#111!important;
+        font-family:Tahoma,Arial,sans-serif!important;
+    }
+
+    #loginOverlay,
+    .top,
+    aside,
+    .copy,
+    .lesson-tools,
+    .modal{
+        display:none!important;
+    }
+
+    .layout{
+        display:block!important;
+    }
+
+    main{
+        padding:0!important;
+    }
+
+    .hero{
+        min-height:250mm;
+        display:flex!important;
+        flex-direction:column;
+        justify-content:center;
+        background:white!important;
+        color:#111!important;
+        border:2px solid #222!important;
+        border-radius:0!important;
+        box-shadow:none!important;
+        page-break-after:always;
+    }
+
+    .hero h1,
+    .hero p,
+    .hero .kicker{
+        color:#111!important;
+    }
+
+    .lesson{
+        background:white!important;
+        color:#111!important;
+        border:1px solid #aaa!important;
+        border-radius:6px!important;
+        box-shadow:none!important;
+        margin:0 0 10mm 0!important;
+        padding:8mm!important;
+    }
+
+    .lesson p{
+        color:#333!important;
+    }
+
+    .num{
+        background:#e5e5e5!important;
+        color:#111!important;
+    }
+
+    h2{
+        color:#111!important;
+    }
+
+    pre{
+        background:#f3f3f3!important;
+        color:#111!important;
+        border:1px solid #888!important;
+        box-shadow:none!important;
+        font-size:8.5pt!important;
+        line-height:1.5!important;
+        white-space:pre-wrap!important;
+        overflow:visible!important;
+        word-break:break-word!important;
+    }
+
+    .mini-note{
+        background:#f5f5f5!important;
+        color:#222!important;
+        border-right:3px solid #555!important;
+    }
+
+    footer{
+        color:#444!important;
+    }
+}
+</style>
+</head>
+
+<body class="locked">
+
+<!-- =========================================================
+     LOGIN
+========================================================= -->
+
+<div id="loginOverlay">
+
+    <div id="loginBox">
+
+        <h2>🔐 ورود به جزوه</h2>
+
+        <p>
+            برای مشاهده محتوای کامل جزوه، نام کاربری و رمز عبور را وارد کنید.
+        </p>
+
+        <div class="login-field">
+            <label>نام کاربری</label>
+            <input
+                id="loginUsername"
+                type="text"
+                autocomplete="username"
+                placeholder="نام کاربری">
+        </div>
+
+        <div class="login-field">
+            <label>رمز عبور</label>
+            <input
+                id="loginPassword"
+                type="password"
+                autocomplete="current-password"
+                placeholder="رمز عبور">
+        </div>
+
+        <button id="loginBtn">
+            ورود به جزوه
+        </button>
+
+        <div id="loginError"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     DOWNLOAD PASSWORD MODAL
+========================================================= -->
+
+<div id="downloadModal" class="modal">
+
+    <div class="modal-box">
+
+        <h2 id="downloadTitle">🔐 رمز دانلود</h2>
+
+        <p>
+            برای دریافت این فایل، رمز دانلود را وارد کنید.
+        </p>
+
+        <input
+            id="downloadPassword"
+            class="modal-input"
+            type="password"
+            placeholder="رمز دانلود">
+
+        <div id="downloadError" class="modal-error"></div>
+
+        <div class="modal-buttons">
+
+            <button
+                id="downloadConfirm"
+                class="primary">
+                تأیید و دانلود
+            </button>
+
+            <button
+                id="downloadCancel"
+                class="secondary">
+                انصراف
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="top">
+
+    <div class="logo">
+        📘 <b>صفر تا صد برنامه‌نویسی اینوبات</b>
+    </div>
+
+    <input
+        id="search"
+        class="search"
+        placeholder="جستجوی درس، سنسور، موتور، سروو...">
+
+    <button
+        id="pdfBtn"
+        class="header-btn">
+        📄 خروجی PDF
+    </button>
+
+    <button
+        id="pythonBtn"
+        class="header-btn">
+        🐍 دانلود Python
+    </button>
+
+</header>
+
+
+<!-- =========================================================
+     MAIN LAYOUT
+========================================================= -->
+
+<div class="layout">
+
+    <aside>
+
+        <div class="side-title">
+            فهرست ۳۵ درس
+        </div>
+
+        <div id="sideNav"></div>
+
+    </aside>
+
+
+    <main>
+
+        <section class="hero">
+
+            <div class="kicker">
+                راهنمای آموزشی و پروژه‌ای
+            </div>
+
+            <h1>
+                صفر تا صد برنامه‌نویسی اینوبات
+            </h1>
+
+            <p>
+                این جزوه یک مسیر آموزشی مرحله‌به‌مرحله برای یادگیری
+                برنامه‌نویسی اینوبات است؛ از روشن کردن اولین LED
+                تا کار با موتور، سروو، سنسورها، نمایشگر، RGB،
+                IMU و ساخت پروژه‌های ترکیبی.
+            </p>
+
+            <div class="stats">
+
+                <div class="stat">
+                    <b>35</b>
+                    درس و پروژه
+                </div>
+
+                <div class="stat">
+                    <b>کد کامل</b>
+                    مثال‌های آماده
+                </div>
+
+                <div class="stat">
+                    <b>RJ 1–12</b>
+                    ساختار پورت‌ها
+                </div>
+
+                <div class="stat">
+                    <b>یاشار بیگی</b>
+                    نویسنده
+                </div>
+
+            </div>
+
+            <div class="cover-grid">
+
+                <div class="cover-card">
+                    🎯 آموزش از پایه تا پروژه
+                </div>
+
+                <div class="cover-card">
+                    🧩 سنسور، موتور، سروو و نمایشگر
+                </div>
+
+                <div class="cover-card">
+                    🚀 مثال‌های ترکیبی واقعی
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section
+            class="lessons"
+            id="lessons">
+        </section>
+
+
+        <footer>
+            صفر تا صد برنامه‌نویسی اینوبات
+            <br>
+            RobotixInnoBot
+        </footer>
+
+    </main>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+const LOGIN_USERNAME = "yashar1405";
+const LOGIN_PASSWORD = "1405";
+
+const DOWNLOAD_PASSWORD = "13899089";
+
+
+/* =========================================================
+   LESSON DATA
+========================================================= */
+
+const lessons = [
+
+[
+"آشنایی با اینوبات و اولین برنامه",
+"در اولین قدم باید ساختار کلی برنامه اینوبات را بشناسیم. هر برنامه معمولاً یک شیء از RobotixInnoBot می‌سازد، سپس در setup ربات را راه‌اندازی می‌کند. بخش loop محل اجرای مداوم منطق برنامه است.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
@@ -37,12 +907,13 @@ void setup() {
 }
 
 void loop() {
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-2">
-      <div class="lesson-head"><span class="num">02</span><div><h2>LED؛ اولین خروجی دیجیتال</h2><p><br>LED یکی از ساده‌ترین خروجی‌ها برای شروع است. تابع setLED دو ورودی دارد: پایه LED و وضعیت آن.<br>HIGH برای روشن و LOW برای خاموش‌کردن استفاده می‌شود.<br><br>نکته آموزشی: delay اجرای برنامه را برای مدت مشخصی متوقف می‌کند؛ بنابراین برای چشمک‌زدن ساده مناسب است.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"LED؛ اولین خروجی دیجیتال",
+"LED یکی از ساده‌ترین خروجی‌ها برای شروع برنامه‌نویسی است. با setLED می‌توان وضعیت LED را تغییر داد. HIGH به معنی روشن و LOW به معنی خاموش است.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
@@ -56,12 +927,13 @@ void loop() {
 
   bot.setLED(PIN_LED_1, LOW);
   delay(500);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-3">
-      <div class="lesson-head"><span class="num">03</span><div><h2>چهار LED؛ ساخت الگوی نوری</h2><p><br>با همان دستور می‌توان چند خروجی را پشت سر هم کنترل کرد. این پروژه یک الگوی رفت‌وبرگشتی می‌سازد.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"چهار LED؛ ساخت الگوی نوری",
+"وقتی کنترل یک LED را یاد گرفتیم، می‌توانیم چند خروجی را پشت سر هم کنترل کنیم. این روش پایه بسیاری از پروژه‌های چراغی و نمایش وضعیت است.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
@@ -70,6 +942,7 @@ void setup() {
 }
 
 void loop() {
+
   bot.setLED(PIN_LED_1, HIGH);
   delay(150);
   bot.setLED(PIN_LED_1, LOW);
@@ -85,12 +958,13 @@ void loop() {
   bot.setLED(PIN_LED_4, HIGH);
   delay(150);
   bot.setLED(PIN_LED_4, LOW);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-4">
-      <div class="lesson-head"><span class="num">04</span><div><h2>کلیدها؛ تبدیل ورودی به تصمیم</h2><p><br>تابع readBTN وضعیت یک کلید را می‌خواند. با ترکیب آن با if می‌توان برای ربات تصمیم ساخت.<br>در مثال زیر با فشار کلید اول، LED اول روشن می‌شود و با رهاکردن خاموش می‌شود.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"کلیدها؛ تبدیل ورودی به تصمیم",
+"برنامه ربات زمانی هوشمند می‌شود که بتواند ورودی‌ها را بخواند و بر اساس آن تصمیم بگیرد. readBTN وضعیت کلید را می‌خواند و if برای تصمیم‌گیری استفاده می‌شود.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
@@ -99,21 +973,25 @@ void setup() {
 }
 
 void loop() {
-  uint8_t state = bot.readBTN(PIN_BTN_1);
+
+  uint8_t state =
+      bot.readBTN(PIN_BTN_1);
 
   if (state == HIGH) {
     bot.setLED(PIN_LED_1, HIGH);
-  } else {
+  }
+  else {
     bot.setLED(PIN_LED_1, LOW);
   }
 
   delay(20);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-5">
-      <div class="lesson-head"><span class="num">05</span><div><h2>بیزر؛ تولید نت و توقف صدا</h2><p><br>buzzerTone یک فرکانس را روی بیزر ایجاد می‌کند و buzzerNoTone آن را متوقف می‌کند.<br>هرچه فرکانس بیشتر باشد، زیر و بم صدای تولیدشده تغییر می‌کند.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"بیزر؛ تولید صدای ساده",
+"با buzzerTone می‌توان یک فرکانس صوتی ایجاد کرد. تغییر فرکانس باعث تغییر زیر و بم صدا می‌شود. buzzerNoTone نیز صدا را متوقف می‌کند.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
@@ -122,6 +1000,7 @@ void setup() {
 }
 
 void loop() {
+
   bot.buzzerTone(800);
   delay(300);
 
@@ -130,12 +1009,13 @@ void loop() {
 
   bot.buzzerNoTone();
   delay(700);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-6">
-      <div class="lesson-head"><span class="num">06</span><div><h2>پخش آهنگ‌های آماده</h2><p><br>در برنامه مجموعه‌ای از آهنگ‌های از پیش تعریف‌شده وجود دارد. playSong نام آهنگ را دریافت می‌کند.<br>نام‌های موجود در کد ارائه‌شده شامل NOKIA، PINKPANTHER، GAMEOFTHRONES، HAPPYBIRTHDAY، PACMAN، TETRIS و THEGODFATHER هستند.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"پخش آهنگ‌های آماده",
+"برای ساخت پروژه‌های جذاب‌تر می‌توان از آهنگ‌های آماده استفاده کرد. تابع playSong نام آهنگ را دریافت می‌کند.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
@@ -146,14 +1026,13 @@ void setup() {
 void loop() {
   bot.playSong(HAPPYBIRTHDAY);
   delay(2000);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-7">
-      <div class="lesson-head"><span class="num">07</span><div><h2>سروو؛ کنترل زاویه</h2><p><br>سروو با setServoPositions کنترل می‌شود. شیء سروو باید یکی از servo_1 تا servo_8 باشد.<br>مقدار position در برنامه به صورت uint8_t دریافت می‌شود و برای زاویه‌های معمول سروو، بازه 0 تا 180 کاربرد دارد.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
 
-int i = 0;
+[
+"سروو؛ کنترل زاویه",
+"سروو برخلاف موتور معمولی برای کنترل موقعیت استفاده می‌شود. با setServoPositions می‌توان زاویه سروو را تغییر داد. در پروژه‌های مکانیکی بهتر است ابتدا محدوده واقعی مکانیزم بررسی شود.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
@@ -162,25 +1041,34 @@ void setup() {
 }
 
 void loop() {
-  for (i = 0; i &lt;= 180; i++) {
-    bot.setServoPositions(bot.servo_1, i);
+
+  for (int angle = 0; angle <= 180; angle++) {
+    bot.setServoPositions(
+      bot.servo_1,
+      angle
+    );
     delay(15);
   }
 
-  for (i = 180; i &gt;= 0; i--) {
-    bot.setServoPositions(bot.servo_1, i);
+  for (int angle = 180; angle >= 0; angle--) {
+    bot.setServoPositions(
+      bot.servo_1,
+      angle
+    );
     delay(15);
   }
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-8">
-      <div class="lesson-head"><span class="num">08</span><div><h2>هشت سروو؛ قرار دادن بازوها در موقعیت اولیه</h2><p><br>در شروع یک پروژه مکانیکی بهتر است سرووها را در موقعیت مشخص قرار دهیم تا وضعیت اولیه قابل پیش‌بینی باشد.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"هشت سروو؛ موقعیت اولیه",
+"در پروژه‌های دارای چند سروو بهتر است همه سرووها در شروع به موقعیت مشخص منتقل شوند. این کار باعث می‌شود وضعیت مکانیکی ربات قابل پیش‌بینی باشد.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
 void setup() {
+
   bot.begin();
 
   bot.setServoPositions(bot.servo_1, 90);
@@ -194,12 +1082,13 @@ void setup() {
 }
 
 void loop() {
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-9">
-      <div class="lesson-head"><span class="num">09</span><div><h2>موتور؛ کنترل یک موتور</h2><p><br>setMotorSpeed یک موتور و سرعت آن را دریافت می‌کند. سرعت مثبت و منفی جهت را تغییر می‌دهند و صفر باعث توقف موتور می‌شود.<br>محدوده معمول سرعت در این برنامه بر پایه signed 32-bit است، اما در پیاده‌سازی PWM مقدار مورد استفاده عملاً برای ورودی‌های 0 تا 255 طراحی شده است.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"موتور؛ کنترل یک موتور",
+"موتور برای ایجاد حرکت استفاده می‌شود. setMotorSpeed موتور و سرعت را دریافت می‌کند. سرعت مثبت و منفی می‌توانند جهت حرکت را تغییر دهند و صفر موتور را متوقف می‌کند.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
@@ -208,23 +1097,41 @@ void setup() {
 }
 
 void loop() {
-  bot.setMotorSpeed(bot.motor_1, 180);
+
+  bot.setMotorSpeed(
+    bot.motor_1,
+    180
+  );
+
   delay(1500);
 
-  bot.setMotorSpeed(bot.motor_1, 0);
+  bot.setMotorSpeed(
+    bot.motor_1,
+    0
+  );
+
   delay(800);
 
-  bot.setMotorSpeed(bot.motor_1, -180);
+  bot.setMotorSpeed(
+    bot.motor_1,
+    -180
+  );
+
   delay(1500);
 
-  bot.setMotorSpeed(bot.motor_1, 0);
+  bot.setMotorSpeed(
+    bot.motor_1,
+    0
+  );
+
   delay(800);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-10">
-      <div class="lesson-head"><span class="num">10</span><div><h2>حرکت دو سمت با speed</h2><p><br>speed دو ورودی left و right دارد و برای کنترل سمت چپ و راست ربات مناسب است.<br>این تابع در پیاده‌سازی موجود، موتورهای 1 و 2 را بر اساس left و موتورهای 3 و 4 را بر اساس right تنظیم می‌کند.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"حرکت دو سمت با speed",
+"تابع speed برای کنترل حرکت سمت چپ و راست ربات مناسب است. با تغییر علامت و مقدار سرعت می‌توان حرکت رو به جلو، عقب و چرخش را ایجاد کرد.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
@@ -233,6 +1140,7 @@ void setup() {
 }
 
 void loop() {
+
   bot.speed(150, 150);
   delay(2000);
 
@@ -250,602 +1158,1840 @@ void loop() {
 
   bot.speed(0, 0);
   delay(1000);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-11">
-      <div class="lesson-head"><span class="num">11</span><div><h2>سنسور فاصله صوتی</h2><p><br>برای پورت RJ، ابتدا باید نوع ماژول را با تابع Init مشخص کنیم و سپس Read را اجرا کنیم.<br>rjSrfRead فاصله را بر حسب سانتی‌متر برمی‌گرداند.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"سنسور فاصله صوتی",
+"سنسور فاصله برای تشخیص مانع بسیار کاربردی است. ابتدا نوع ماژول را با rjSrfInit معرفی می‌کنیم و سپس مقدار فاصله را با rjSrfRead می‌خوانیم.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
 void setup() {
+
   Serial.begin(115200);
+
   bot.begin();
 
-  bot.rjSrfInit(bot.port_1);
+  bot.rjSrfInit(
+    bot.port_1
+  );
 }
 
 void loop() {
-  float distance = bot.rjSrfRead(bot.port_1);
 
-  Serial.print(&quot;Distance: &quot;);
+  float distance =
+      bot.rjSrfRead(
+        bot.port_1
+      );
+
+  Serial.print("Distance: ");
   Serial.print(distance);
-  Serial.println(&quot; cm&quot;);
+  Serial.println(" cm");
 
   delay(100);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-12">
-      <div class="lesson-head"><span class="num">12</span><div><h2>سنسور فاصله نوری</h2><p><br>rjVlxInit پورت را برای ماژول فاصله نوری آماده می‌کند و rjVlxRead مقدار فاصله خوانده‌شده را برمی‌گرداند.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"سنسور فاصله نوری",
+"سنسور فاصله نوری نیز برای اندازه‌گیری فاصله کاربرد دارد. تفاوت اصلی در روش اندازه‌گیری و رفتار سنسور در شرایط محیطی است.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
 void setup() {
+
   Serial.begin(115200);
+
   bot.begin();
 
-  bot.rjVlxInit(bot.port_1);
+  bot.rjVlxInit(
+    bot.port_1
+  );
 }
 
 void loop() {
-  int distance = bot.rjVlxRead(bot.port_1);
 
-  Serial.print(&quot;Distance: &quot;);
+  int distance =
+      bot.rjVlxRead(
+        bot.port_1
+      );
+
+  Serial.print("Distance: ");
   Serial.println(distance);
 
   delay(100);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-13">
-      <div class="lesson-head"><span class="num">13</span><div><h2>سنسور IR</h2><p><br>IR مقدار آنالوگ خوانده‌شده از پایه A پورت را برمی‌گرداند. برای بررسی رفتار سنسور بهتر است مقدار خام را در Serial Monitor مشاهده کنیم.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"سنسور IR",
+"سنسور IR می‌تواند برای تشخیص نور مادون قرمز و اندازه‌گیری مقدار آن استفاده شود. مشاهده مقدار خام در Serial Monitor برای شناخت رفتار سنسور بسیار مفید است.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
 void setup() {
+
   Serial.begin(115200);
+
   bot.begin();
 
-  bot.rjIrInit(bot.port_1);
+  bot.rjIrInit(
+    bot.port_1
+  );
 }
 
 void loop() {
-  int value = bot.rjIrRead(bot.port_1);
 
-  Serial.print(&quot;IR value: &quot;);
+  int value =
+      bot.rjIrRead(
+        bot.port_1
+      );
+
+  Serial.print("IR: ");
   Serial.println(value);
 
   delay(100);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-14">
-      <div class="lesson-head"><span class="num">14</span><div><h2>سنسور نور LDR</h2><p><br>LDR نیز مانند IR مقدار آنالوگ می‌خواند. هرچه نور محیط تغییر کند، مقدار خوانده‌شده تغییر خواهد کرد.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"سنسور نور LDR",
+"LDR مقدار نور محیط را به صورت یک مقدار آنالوگ در اختیار برنامه قرار می‌دهد. با تغییر نور، مقدار خروجی نیز تغییر می‌کند.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
 void setup() {
+
   Serial.begin(115200);
+
   bot.begin();
 
-  bot.rjLdrInit(bot.port_1);
+  bot.rjLdrInit(
+    bot.port_1
+  );
 }
 
 void loop() {
-  int value = bot.rjLdrRead(bot.port_1);
 
-  Serial.print(&quot;LDR: &quot;);
+  int value =
+      bot.rjLdrRead(
+        bot.port_1
+      );
+
+  Serial.print("LDR: ");
   Serial.println(value);
 
   delay(100);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-15">
-      <div class="lesson-head"><span class="num">15</span><div><h2>دما و رطوبت</h2><p><br>ماژول دما و رطوبت با rjTempHumInit راه‌اندازی می‌شود. سپس rjTempRead و rjHumRead مقدار دما و رطوبت را می‌خوانند.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"دما و رطوبت",
+"ماژول دما و رطوبت دو مقدار مهم محیط را اندازه‌گیری می‌کند. بهتر است برای داده‌های محیطی از فاصله زمانی مناسب بین خواندن‌ها استفاده شود.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
 void setup() {
+
   Serial.begin(115200);
+
   bot.begin();
 
-  bot.rjTempHumInit(bot.port_1);
+  bot.rjTempHumInit(
+    bot.port_1
+  );
 }
 
 void loop() {
-  float temperature = bot.rjTempRead(bot.port_1);
-  float humidity = bot.rjHumRead(bot.port_1);
 
-  Serial.print(&quot;Temperature: &quot;);
+  float temperature =
+      bot.rjTempRead(
+        bot.port_1
+      );
+
+  float humidity =
+      bot.rjHumRead(
+        bot.port_1
+      );
+
+  Serial.print("Temperature: ");
   Serial.print(temperature);
-  Serial.println(&quot; C&quot;);
+  Serial.println(" C");
 
-  Serial.print(&quot;Humidity: &quot;);
+  Serial.print("Humidity: ");
   Serial.print(humidity);
-  Serial.println(&quot; %&quot;);
+  Serial.println(" %");
 
   delay(1000);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-16">
-      <div class="lesson-head"><span class="num">16</span><div><h2>RGB؛ کنترل یک پیکسل</h2><p><br>rjRgbInit تعداد پیکسل‌ها را در ساختار داخلی راه‌اندازی می‌کند. rjRgbWrite می‌تواند سه مقدار قرمز، سبز و آبی دریافت کند.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"RGB؛ کنترل یک پیکسل",
+"RGB امکان تولید رنگ‌های مختلف را فراهم می‌کند. با ترکیب سه کانال قرمز، سبز و آبی می‌توان رنگ‌های زیادی ساخت.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
 void setup() {
+
   bot.begin();
-  bot.rjRgbInit(bot.port_1);
+
+  bot.rjRgbInit(
+    bot.port_1
+  );
 }
 
 void loop() {
-  bot.rjRgbWrite(bot.port_1, 0, 255, 0, 0);
+
+  bot.rjRgbWrite(
+    bot.port_1,
+    0,
+    255,
+    0,
+    0
+  );
+
   delay(1000);
 
-  bot.rjRgbWrite(bot.port_1, 0, 0, 255, 0);
+  bot.rjRgbWrite(
+    bot.port_1,
+    0,
+    0,
+    255,
+    0
+  );
+
   delay(1000);
 
-  bot.rjRgbWrite(bot.port_1, 0, 0, 255);
+  bot.rjRgbWrite(
+    bot.port_1,
+    0,
+    0,
+    0,
+    255
+  );
+
   delay(1000);
 
-  bot.rjRgbClear(bot.port_1);
+  bot.rjRgbClear(
+    bot.port_1
+  );
+
   delay(500);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-17">
-      <div class="lesson-head"><span class="num">17</span><div><h2>RGB؛ ساخت نوار رنگی</h2><p><br>می‌توان با یک حلقه، چندین پیکسل را پشت سر هم روشن کرد. در این برد آرایه RGB با 16 پیکسل ساخته می‌شود.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"RGB؛ ساخت نوار رنگی",
+"با حلقه for می‌توان چند پیکسل RGB را به صورت ترتیبی کنترل کرد. این روش پایه ساخت افکت‌های نوری است.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
 void setup() {
+
   bot.begin();
-  bot.rjRgbInit(bot.port_1);
+
+  bot.rjRgbInit(
+    bot.port_1
+  );
 }
 
 void loop() {
-  for (int pixel = 0; pixel &lt; 16; pixel++) {
-    bot.rjRgbWrite(bot.port_1, pixel, 40, 120, 255);
+
+  for(
+    int pixel = 0;
+    pixel < 16;
+    pixel++
+  ){
+
+    bot.rjRgbWrite(
+      bot.port_1,
+      pixel,
+      40,
+      120,
+      255
+    );
+
     delay(50);
   }
 
   delay(500);
-  bot.rjRgbClear(bot.port_1);
+
+  bot.rjRgbClear(
+    bot.port_1
+  );
+
   delay(500);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-18">
-      <div class="lesson-head"><span class="num">18</span><div><h2>تشخیص رنگ</h2><p><br>rjTcsRead شش خروجی دارد: R، G، B، C، دمای رنگ و لوکس. این داده‌ها برای نمایش و تحلیل رنگ مناسب‌اند.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"تشخیص رنگ",
+"سنسور رنگ می‌تواند اطلاعات RGB، مقدار روشنایی و برخی پارامترهای دیگر را ارائه کند. این داده‌ها می‌توانند برای دسته‌بندی رنگ‌ها استفاده شوند.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
 void setup() {
+
   Serial.begin(115200);
+
   bot.begin();
 
-  bot.rjTcsInit(bot.port_1);
+  bot.rjTcsInit(
+    bot.port_1
+  );
 }
 
 void loop() {
+
   uint16_t r, g, b, c;
   uint16_t colorTemp, lux;
 
   bot.rjTcsRead(
     bot.port_1,
-    r, g, b, c,
-    colorTemp, lux
+    r,
+    g,
+    b,
+    c,
+    colorTemp,
+    lux
   );
 
-  Serial.print(&quot;R: &quot;); Serial.println(r);
-  Serial.print(&quot;G: &quot;); Serial.println(g);
-  Serial.print(&quot;B: &quot;); Serial.println(b);
-  Serial.print(&quot;C: &quot;); Serial.println(c);
-  Serial.print(&quot;Color temperature: &quot;); Serial.println(colorTemp);
-  Serial.print(&quot;Lux: &quot;); Serial.println(lux);
+  Serial.print("R: ");
+  Serial.println(r);
+
+  Serial.print("G: ");
+  Serial.println(g);
+
+  Serial.print("B: ");
+  Serial.println(b);
+
+  Serial.print("C: ");
+  Serial.println(c);
+
+  Serial.print("Color temperature: ");
+  Serial.println(colorTemp);
+
+  Serial.print("Lux: ");
+  Serial.println(lux);
 
   delay(700);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-19">
-      <div class="lesson-head"><span class="num">19</span><div><h2>آرایه چهارگانه IR</h2><p><br>rjIrArrayRead یک آرایه چهارخانه را پر می‌کند. هر خانه یک byte است و می‌توان چهار وضعیت را در یک حلقه چاپ یا تحلیل کرد.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"آرایه چهارگانه IR",
+"در ماژول آرایه IR چند حسگر هم‌زمان مقداردهی می‌شوند. استفاده از حلقه باعث می‌شود کد کوتاه‌تر و قابل توسعه‌تر باشد.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
 void setup() {
+
   Serial.begin(115200);
+
   bot.begin();
 
-  bot.rjIrArrayInit(bot.port_1);
+  bot.rjIrArrayInit(
+    bot.port_1
+  );
 }
 
 void loop() {
-  uint8_t sensors[4] = {0, 0, 0, 0};
 
-  bot.rjIrArrayRead(bot.port_1, sensors);
+  uint8_t sensors[4] =
+    {0, 0, 0, 0};
 
-  for (int i = 0; i &lt; 4; i++) {
-    Serial.print(&quot;Sensor &quot;);
+  bot.rjIrArrayRead(
+    bot.port_1,
+    sensors
+  );
+
+  for(
+    int i = 0;
+    i < 4;
+    i++
+  ){
+
+    Serial.print("Sensor ");
     Serial.print(i);
-    Serial.print(&quot;: &quot;);
-    Serial.println(sensors[i]);
+    Serial.print(": ");
+    Serial.println(
+      sensors[i]
+    );
   }
 
-  Serial.println(&quot;----------------&quot;);
+  Serial.println("----------------");
+
   delay(200);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-20">
-      <div class="lesson-head"><span class="num">20</span><div><h2>IMU؛ شتاب‌سنج</h2><p><br>getAccelerations سه مرجع برای AX، AY و AZ می‌گیرد و شتاب هر محور را در آن‌ها قرار می‌دهد.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"IMU؛ شتاب‌سنج",
+"شتاب‌سنج برای اندازه‌گیری شتاب در محورهای مختلف استفاده می‌شود. این داده‌ها در تشخیص حرکت و وضعیت ربات بسیار کاربرد دارند.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
 void setup() {
+
   Serial.begin(115200);
+
   bot.begin();
 }
 
 void loop() {
+
   float ax, ay, az;
 
-  bot.getAccelerations(ax, ay, az);
+  bot.getAccelerations(
+    ax,
+    ay,
+    az
+  );
 
-  Serial.print(&quot;AX: &quot;); Serial.println(ax);
-  Serial.print(&quot;AY: &quot;); Serial.println(ay);
-  Serial.print(&quot;AZ: &quot;); Serial.println(az);
+  Serial.print("AX: ");
+  Serial.println(ax);
+
+  Serial.print("AY: ");
+  Serial.println(ay);
+
+  Serial.print("AZ: ");
+  Serial.println(az);
 
   delay(100);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-21">
-      <div class="lesson-head"><span class="num">21</span><div><h2>IMU؛ ژیروسکوپ</h2><p><br>getGyros سرعت زاویه‌ای سه محور را در gx، gy و gz قرار می‌دهد.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"IMU؛ ژیروسکوپ",
+"ژیروسکوپ سرعت زاویه‌ای را در محورهای مختلف اندازه‌گیری می‌کند. ترکیب اطلاعات ژیروسکوپ و شتاب‌سنج می‌تواند برای تحلیل حرکت استفاده شود.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
 void setup() {
+
   Serial.begin(115200);
+
   bot.begin();
 }
 
 void loop() {
+
   float gx, gy, gz;
 
-  bot.getGyros(gx, gy, gz);
+  bot.getGyros(
+    gx,
+    gy,
+    gz
+  );
 
-  Serial.print(&quot;GX: &quot;); Serial.println(gx);
-  Serial.print(&quot;GY: &quot;); Serial.println(gy);
-  Serial.print(&quot;GZ: &quot;); Serial.println(gz);
+  Serial.print("GX: ");
+  Serial.println(gx);
+
+  Serial.print("GY: ");
+  Serial.println(gy);
+
+  Serial.print("GZ: ");
+  Serial.println(gz);
 
   delay(100);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-22">
-      <div class="lesson-head"><span class="num">22</span><div><h2>IMU؛ مغناطیس‌سنج</h2><p><br>getMagno مقادیر میدان مغناطیسی در سه محور را برمی‌گرداند.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"IMU؛ مغناطیس‌سنج",
+"مغناطیس‌سنج شدت میدان مغناطیسی را در سه محور اندازه‌گیری می‌کند. این اطلاعات می‌توانند در پروژه‌های جهت‌یابی مورد استفاده قرار گیرند.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
 void setup() {
+
   Serial.begin(115200);
+
   bot.begin();
 }
 
 void loop() {
+
   float mx, my, mz;
 
-  bot.getMagno(mx, my, mz);
+  bot.getMagno(
+    mx,
+    my,
+    mz
+  );
 
-  Serial.print(&quot;MX: &quot;); Serial.println(mx);
-  Serial.print(&quot;MY: &quot;); Serial.println(my);
-  Serial.print(&quot;MZ: &quot;); Serial.println(mz);
+  Serial.print("MX: ");
+  Serial.println(mx);
+
+  Serial.print("MY: ");
+  Serial.println(my);
+
+  Serial.print("MZ: ");
+  Serial.println(mz);
 
   delay(100);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-23">
-      <div class="lesson-head"><span class="num">23</span><div><h2>IMU؛ دمای حسگر</h2><p><br>getTemp دمای حسگر را برمی‌گرداند.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"IMU؛ دمای حسگر",
+"برخی حسگرهای IMU اطلاعات دمای داخلی خود را نیز ارائه می‌کنند. این مقدار می‌تواند برای بررسی شرایط کاری حسگر مفید باشد.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
 void setup() {
+
   Serial.begin(115200);
+
   bot.begin();
 }
 
 void loop() {
-  float temperature = bot.getTemp();
 
-  Serial.print(&quot;Temperature: &quot;);
-  Serial.println(temperature);
+  float temperature =
+      bot.getTemp();
+
+  Serial.print(
+    "Temperature: "
+  );
+
+  Serial.println(
+    temperature
+  );
 
   delay(500);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-24">
-      <div class="lesson-head"><span class="num">24</span><div><h2>نمایش لوگو و پاک‌کردن نمایشگر</h2><p><br>در زمان راه‌اندازی، نمایشگر مقداردهی اولیه می‌شود. showLogo می‌تواند لوگوی موجود را نمایش دهد و clearLCD کل صفحه را پاک می‌کند.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"نمایش لوگو",
+"نمایشگر ربات می‌تواند در شروع برنامه لوگوی تعریف‌شده را نمایش دهد. این قابلیت برای صفحه شروع پروژه بسیار مناسب است.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
 void setup() {
+
   bot.begin();
-  bot.showLogo(LOGO_ROBOTIX);
+
+  bot.showLogo(
+    LOGO_ROBOTIX
+  );
 }
 
 void loop() {
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-25">
-      <div class="lesson-head"><span class="num">25</span><div><h2>نمایش متن</h2><p><br>drawString مختصات x و y، متن و اندازه را دریافت می‌کند. برای نمایش رشته باید یک آرایه char یا رشته قابل تبدیل به char* داشته باشیم.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"پاک‌کردن نمایشگر",
+"قبل از رسم محتوای جدید معمولاً لازم است صفحه پاک شود. clearLCD کل صفحه را پاک می‌کند.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
-char message[] = &quot;INNOBOT&quot;;
-
 void setup() {
+
   bot.begin();
+
   bot.clearLCD();
-  bot.drawString(0, 0, message, 1);
 }
 
 void loop() {
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-26">
-      <div class="lesson-head"><span class="num">26</span><div><h2>ماژول LED روی پورت RJ</h2><p><br>برای LED متصل به پورت RJ، ابتدا پورت را با rjLedInit آماده می‌کنیم و سپس rjLedWrite را برای تغییر وضعیت به کار می‌بریم.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"نمایش متن",
+"با drawString می‌توان متن را در مختصات مشخص نمایش داد. استفاده صحیح از مختصات باعث می‌شود رابط کاربری نمایشگر مرتب باشد.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
+char message[] =
+  "INNOBOT";
+
 void setup() {
+
   bot.begin();
-  bot.rjLedInit(bot.port_1);
+
+  bot.clearLCD();
+
+  bot.drawString(
+    0,
+    0,
+    message,
+    1
+  );
 }
 
 void loop() {
-  bot.rjLedWrite(bot.port_1, HIGH);
-  delay(500);
+}`
+],
 
-  bot.rjLedWrite(bot.port_1, LOW);
-  delay(500);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-27">
-      <div class="lesson-head"><span class="num">27</span><div><h2>کلید روی پورت RJ</h2><p><br>ماژول کلید RJ با rjSwInit راه‌اندازی و با rjSwRead خوانده می‌شود.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+[
+"ماژول LED روی پورت RJ",
+"برای ماژول‌های RJ ابتدا باید Init مربوط به همان ماژول را اجرا کنیم. سپس در loop می‌توان وضعیت آن را تغییر داد.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
 void setup() {
+
+  bot.begin();
+
+  bot.rjLedInit(
+    bot.port_1
+  );
+}
+
+void loop() {
+
+  bot.rjLedWrite(
+    bot.port_1,
+    HIGH
+  );
+
+  delay(500);
+
+  bot.rjLedWrite(
+    bot.port_1,
+    LOW
+  );
+
+  delay(500);
+}`
+],
+
+[
+"کلید روی پورت RJ",
+"کلید RJ یک ورودی خارجی در اختیار برنامه قرار می‌دهد. با خواندن وضعیت آن می‌توان رویدادهای مختلفی را فعال کرد.",
+`#include <RobotixInnoBot.h>
+
+RobotixInnoBot bot;
+
+void setup() {
+
   Serial.begin(115200);
+
   bot.begin();
-  bot.rjSwInit(bot.port_1);
+
+  bot.rjSwInit(
+    bot.port_1
+  );
 }
 
 void loop() {
-  uint8_t state = bot.rjSwRead(bot.port_1);
 
-  Serial.print(&quot;Switch: &quot;);
+  uint8_t state =
+      bot.rjSwRead(
+        bot.port_1
+      );
+
+  Serial.print(
+    "Switch: "
+  );
+
   Serial.println(state);
 
   delay(50);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-28">
-      <div class="lesson-head"><span class="num">28</span><div><h2>مانیتور داده پورت</h2><p><br>addModToMonitor مقدار ماژول را در رکورد مانیتور قرار می‌دهد و getMonitorData یک رشته متنی با قالب COU12 تولید می‌کند.<br>این روش برای ارسال یک بسته متنی شامل نوع و مقدار 12 پورت طراحی شده است.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"مانیتور داده پورت",
+"مانیتور داده برای مشاهده وضعیت ماژول‌ها مفید است. ابتدا ماژول را معرفی می‌کنیم، سپس داده مانیتور را دریافت و از طریق Serial ارسال می‌کنیم.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
 void setup() {
+
   Serial.begin(115200);
+
   bot.begin();
-  bot.rjSrfInit(bot.port_1);
+
+  bot.rjSrfInit(
+    bot.port_1
+  );
 }
 
 void loop() {
-  bot.addModToMonitor(bot.port_1);
 
-  const char* data = bot.getMonitorData();
+  bot.addModToMonitor(
+    bot.port_1
+  );
+
+  const char* data =
+      bot.getMonitorData();
 
   Serial.println(data);
 
   delay(100);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-29">
-      <div class="lesson-head"><span class="num">29</span><div><h2>پروژه کامل: چراغ هوشمند با کلید و بیزر</h2><p><br>در این پروژه سه مفهوم ورودی، خروجی نوری و خروجی صوتی ترکیب می‌شوند.<br>با فشار کلید، چراغ و بیزر فعال می‌شوند.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"پروژه: چراغ هوشمند",
+"در این پروژه سه مفهوم ورودی، خروجی نوری و خروجی صوتی با هم ترکیب می‌شوند. با فشردن کلید LED و بیزر فعال می‌شوند.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
 void setup() {
+
   bot.begin();
 
-  bot.setLED(PIN_LED_1, LOW);
+  bot.setLED(
+    PIN_LED_1,
+    LOW
+  );
+
   bot.buzzerNoTone();
 }
 
 void loop() {
-  if (bot.readBTN(PIN_BTN_1) == HIGH) {
-    bot.setLED(PIN_LED_1, HIGH);
-    bot.buzzerTone(1000);
-  } else {
-    bot.setLED(PIN_LED_1, LOW);
+
+  if(
+    bot.readBTN(PIN_BTN_1)
+    == HIGH
+  ){
+
+    bot.setLED(
+      PIN_LED_1,
+      HIGH
+    );
+
+    bot.buzzerTone(
+      1000
+    );
+
+  }else{
+
+    bot.setLED(
+      PIN_LED_1,
+      LOW
+    );
+
     bot.buzzerNoTone();
   }
 
   delay(20);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-30">
-      <div class="lesson-head"><span class="num">30</span><div><h2>پروژه کامل: هشدار فاصله</h2><p><br>سنسور فاصله و بیزر در یک حلقه ترکیب شده‌اند. اگر فاصله کمتر از 20 سانتی‌متر باشد، هشدار فعال می‌شود.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"پروژه: هشدار فاصله",
+"در این پروژه فاصله به صورت پیوسته اندازه‌گیری می‌شود. اگر مانع نزدیک باشد، LED و بیزر هشدار می‌دهند.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
 void setup() {
+
   bot.begin();
-  bot.rjSrfInit(bot.port_1);
+
+  bot.rjSrfInit(
+    bot.port_1
+  );
 }
 
 void loop() {
-  float distance = bot.rjSrfRead(bot.port_1);
 
-  if (distance &gt; 0 &amp;&amp; distance &lt; 20) {
-    bot.setLED(PIN_LED_1, HIGH);
-    bot.buzzerTone(1400);
-  } else {
-    bot.setLED(PIN_LED_1, LOW);
+  float distance =
+      bot.rjSrfRead(
+        bot.port_1
+      );
+
+  if(
+    distance > 0 &&
+    distance < 20
+  ){
+
+    bot.setLED(
+      PIN_LED_1,
+      HIGH
+    );
+
+    bot.buzzerTone(
+      1400
+    );
+
+  }else{
+
+    bot.setLED(
+      PIN_LED_1,
+      LOW
+    );
+
     bot.buzzerNoTone();
   }
 
   delay(50);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-31">
-      <div class="lesson-head"><span class="num">31</span><div><h2>پروژه کامل: حرکت و توقف بر اساس فاصله</h2><p><br>این نمونه یک الگوی پایه برای ربات‌های خودکار است: سنسور تصمیم می‌گیرد و موتور اجرا می‌کند.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"پروژه: حرکت و توقف بر اساس فاصله",
+"این پروژه نمونه‌ای از سیستم تصمیم‌گیری خودکار است. سنسور ورودی را فراهم می‌کند و موتور بر اساس نتیجه سنسور تصمیم می‌گیرد.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
 void setup() {
+
   bot.begin();
-  bot.rjSrfInit(bot.port_1);
+
+  bot.rjSrfInit(
+    bot.port_1
+  );
 }
 
 void loop() {
-  float distance = bot.rjSrfRead(bot.port_1);
 
-  if (distance &gt; 20) {
-    bot.speed(150, 150);
-  } else {
-    bot.speed(0, 0);
-    bot.buzzerTone(1200);
+  float distance =
+      bot.rjSrfRead(
+        bot.port_1
+      );
+
+  if(
+    distance > 20
+  ){
+
+    bot.speed(
+      150,
+      150
+    );
+
+  }else{
+
+    bot.speed(
+      0,
+      0
+    );
+
+    bot.buzzerTone(
+      1200
+    );
+
     delay(250);
+
     bot.buzzerNoTone();
   }
 
   delay(50);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-32">
-      <div class="lesson-head"><span class="num">32</span><div><h2>پروژه کامل: نمایش وضعیت سنسور و RGB</h2><p><br>در این پروژه مقدار سنسور IR خوانده و به صورت شدت تقریبی روی یک پیکسل RGB نمایش داده می‌شود.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"پروژه: سنسور و RGB",
+"در این مثال مقدار یک سنسور به رنگ RGB تبدیل می‌شود. چنین ساختاری برای نمایش سریع وضعیت یک حسگر بسیار کاربردی است.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
 void setup() {
+
   Serial.begin(115200);
+
   bot.begin();
 
-  bot.rjIrInit(bot.port_1);
-  bot.rjRgbInit(bot.port_2);
+  bot.rjIrInit(
+    bot.port_1
+  );
+
+  bot.rjRgbInit(
+    bot.port_2
+  );
 }
 
 void loop() {
-  int value = bot.rjIrRead(bot.port_1);
 
-  Serial.print(&quot;IR: &quot;);
+  int value =
+      bot.rjIrRead(
+        bot.port_1
+      );
+
+  Serial.print(
+    "IR: "
+  );
+
   Serial.println(value);
 
-  if (value &lt; 300) {
-    bot.rjRgbWrite(bot.port_2, 0, 0, 255, 0);
-  } else if (value &lt; 700) {
-    bot.rjRgbWrite(bot.port_2, 0, 255, 120, 0);
-  } else {
-    bot.rjRgbWrite(bot.port_2, 0, 255, 0, 0);
+  if(
+    value < 300
+  ){
+
+    bot.rjRgbWrite(
+      bot.port_2,
+      0,
+      0,
+      255,
+      0
+    );
+
+  }else if(
+    value < 700
+  ){
+
+    bot.rjRgbWrite(
+      bot.port_2,
+      0,
+      255,
+      120,
+      0
+    );
+
+  }else{
+
+    bot.rjRgbWrite(
+      bot.port_2,
+      0,
+      255,
+      0,
+      0
+    );
   }
 
   delay(100);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-33">
-      <div class="lesson-head"><span class="num">33</span><div><h2>پروژه کامل: حرکت سروو به کمک سنسور فاصله</h2><p><br>وقتی مانع نزدیک شود، سروو به موقعیت 180 می‌رود؛ در غیر این صورت به 0 برمی‌گردد.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"پروژه: سروو و سنسور فاصله",
+"در این پروژه سروو بر اساس فاصله مانع حرکت می‌کند. این الگو پایه بسیاری از سیستم‌های مکانیکی هوشمند است.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
 void setup() {
+
   bot.begin();
-  bot.rjSrfInit(bot.port_1);
-  bot.setServoPositions(bot.servo_1, 0);
+
+  bot.rjSrfInit(
+    bot.port_1
+  );
+
+  bot.setServoPositions(
+    bot.servo_1,
+    0
+  );
 }
 
 void loop() {
-  float distance = bot.rjSrfRead(bot.port_1);
 
-  if (distance &gt; 0 &amp;&amp; distance &lt; 20) {
-    bot.setServoPositions(bot.servo_1, 180);
-  } else {
-    bot.setServoPositions(bot.servo_1, 0);
+  float distance =
+      bot.rjSrfRead(
+        bot.port_1
+      );
+
+  if(
+    distance > 0 &&
+    distance < 20
+  ){
+
+    bot.setServoPositions(
+      bot.servo_1,
+      180
+    );
+
+  }else{
+
+    bot.setServoPositions(
+      bot.servo_1,
+      0
+    );
   }
 
   delay(100);
-}
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-34">
-      <div class="lesson-head"><span class="num">34</span><div><h2>مرجع پورت‌ها و اشیای عمومی</h2><p><br>دوازده پورت عمومی به صورت port_1 تا port_12 در دسترس‌اند. چهار موتور motor_1 تا motor_4 و هشت سروو servo_1 تا servo_8 نیز به صورت عضو عمومی شیء bot در اختیار برنامه هستند.<br><br>برای کار با یک ماژول RJ، ابتدا پورت مناسب را انتخاب می‌کنیم، سپس Init همان ماژول را روی آن اجرا می‌کنیم و در loop مقدار را می‌خوانیم.<br></p></div></div>
-      <div class="code-wrap"><button class="copy">کپی کد</button><pre><code>#include &lt;RobotixInnoBot.h&gt;
+}`
+],
+
+[
+"مرجع پورت‌ها",
+"پورت‌های RJ با port_1 تا port_12 مشخص می‌شوند. موتورهای 1 تا 4 و سرووهای 1 تا 8 نیز از طریق اعضای عمومی شیء bot در دسترس هستند.",
+`#include <RobotixInnoBot.h>
 
 RobotixInnoBot bot;
 
 void setup() {
+
   Serial.begin(115200);
+
   bot.begin();
 
-  bot.rjSrfInit(bot.port_1);
+  bot.rjSrfInit(
+    bot.port_1
+  );
 }
 
 void loop() {
-  float distance = bot.rjSrfRead(bot.port_1);
 
-  Serial.print(&quot;Port 1 distance: &quot;);
-  Serial.print(distance);
-  Serial.println(&quot; cm&quot;);
+  float distance =
+      bot.rjSrfRead(
+        bot.port_1
+      );
+
+  Serial.print(
+    "Port 1 distance: "
+  );
+
+  Serial.println(
+    distance
+  );
 
   delay(100);
+}`
+],
+
+[
+"ساختار if و else در ربات",
+"تقریباً تمام پروژه‌های هوشمند از شرط‌ها استفاده می‌کنند. شرط مشخص می‌کند در چه شرایطی کدام عمل انجام شود.",
+`#include <RobotixInnoBot.h>
+
+RobotixInnoBot bot;
+
+void setup() {
+  bot.begin();
 }
-</code></pre></div>
-      <div class="mini-note"> </div>
-    </article><article class="lesson" id="lesson-35">
-      <div class="lesson-head"><span class="num">35</span><div><h2>نکات حرفه‌ای و خطاهای رایج</h2><p><br>۱) قبل از استفاده از ماژول RJ، Init مناسب همان ماژول را اجرا کنید.<br>۲) پورت انتخاب‌شده باید با سیم‌کشی واقعی مطابقت داشته باشد.<br>۳) Serial.begin را فقط یک بار در setup قرار دهید.<br>۴) در برنامه‌های موتور، ابتدا سرعت کم را آزمایش کنید.<br>۵) برای سروو، محدوده مکانیکی واقعی سازوکار را در نظر بگیرید.<br>۶) delayهای بسیار بزرگ باعث کندشدن واکنش ربات می‌شوند.<br>۷) وقتی مقدار سنسور غیرعادی است، ابتدا مقدار خام را در Serial Monitor ببینید.<br>۸) در پروژه‌های ترکیبی، هر بخش را جداگانه آزمایش و سپس ترکیب کنید.<br></p></div></div>
-      
-      <div class="mini-note"> </div>
-    </article></section>
-<footer>صفر تا صد برنامه‌نویسی اینوبات</footer></main></div>
-<script>
-document.querySelectorAll('.copy').forEach(btn=>btn.addEventListener('click',async()=>{const code=btn.parentElement.querySelector('code').innerText;try{await navigator.clipboard.writeText(code);btn.textContent='✓ کپی شد';setTimeout(()=>btn.textContent='کپی کد',1200)}catch(e){btn.textContent='کپی نشد'}}));
-const search=document.getElementById('search'); search.addEventListener('input',()=>{const q=search.value.trim().toLowerCase();document.querySelectorAll('.lesson').forEach(x=>x.style.display=(!q||x.innerText.toLowerCase().includes(q))?'':'none')});
-</script></body></html>
+
+void loop() {
+
+  int value = 500;
+
+  if(value > 700){
+
+    bot.setLED(
+      PIN_LED_1,
+      HIGH
+    );
+
+  }else{
+
+    bot.setLED(
+      PIN_LED_1,
+      LOW
+    );
+  }
+
+  delay(100);
+}`
+],
+
+[
+"حلقه for در پروژه‌های اینوبات",
+"حلقه for برای تکرار عملیات بسیار مهم است. با آن می‌توان چند LED، چند سروو یا چند پیکسل RGB را بدون نوشتن کد تکراری کنترل کرد.",
+`#include <RobotixInnoBot.h>
+
+RobotixInnoBot bot;
+
+void setup() {
+
+  bot.begin();
+}
+
+void loop() {
+
+  for(
+    int i = 0;
+    i < 4;
+    i++
+  ){
+
+    bot.setLED(
+      PIN_LED_1 + i,
+      HIGH
+    );
+
+    delay(150);
+  }
+
+  delay(500);
+}`
+],
+
+[
+"استفاده از متغیرها",
+"متغیرها به ما اجازه می‌دهند مقدارها را ذخیره و در بخش‌های مختلف برنامه استفاده کنیم. انتخاب نوع متغیر مناسب باعث خوانایی و مدیریت بهتر برنامه می‌شود.",
+`#include <RobotixInnoBot.h>
+
+RobotixInnoBot bot;
+
+int speedValue = 120;
+
+void setup() {
+
+  bot.begin();
+}
+
+void loop() {
+
+  bot.speed(
+    speedValue,
+    speedValue
+  );
+
+  delay(1000);
+
+  bot.speed(
+    0,
+    0
+  );
+
+  delay(500);
+}`
+],
+
+[
+"ترکیب چند سنسور",
+"در پروژه‌های حرفه‌ای معمولاً یک سنسور به تنهایی کافی نیست. می‌توان اطلاعات چند سنسور را خواند و با چند شرط، رفتار دقیق‌تری برای ربات ساخت.",
+`#include <RobotixInnoBot.h>
+
+RobotixInnoBot bot;
+
+void setup() {
+
+  Serial.begin(115200);
+
+  bot.begin();
+
+  bot.rjSrfInit(
+    bot.port_1
+  );
+
+  bot.rjIrInit(
+    bot.port_2
+  );
+}
+
+void loop() {
+
+  float distance =
+      bot.rjSrfRead(
+        bot.port_1
+      );
+
+  int ir =
+      bot.rjIrRead(
+        bot.port_2
+      );
+
+  if(
+    distance < 20 &&
+    ir > 500
+  ){
+
+    bot.speed(
+      0,
+      0
+    );
+
+    bot.buzzerTone(
+      1500
+    );
+
+  }else{
+
+    bot.buzzerNoTone();
+
+    bot.speed(
+      120,
+      120
+    );
+  }
+
+  delay(50);
+}`
+],
+
+[
+"پروژه نهایی: ربات هوشمند",
+"در پروژه نهایی چند مفهوم اصلی با هم ترکیب می‌شوند: سنسور فاصله، موتور، LED و بیزر. هدف این پروژه تمرین ساختار یک برنامه واقعی است.",
+`#include <RobotixInnoBot.h>
+
+RobotixInnoBot bot;
+
+void setup() {
+
+  bot.begin();
+
+  bot.rjSrfInit(
+    bot.port_1
+  );
+
+  bot.setLED(
+    PIN_LED_1,
+    LOW
+  );
+
+  bot.buzzerNoTone();
+}
+
+void loop() {
+
+  float distance =
+      bot.rjSrfRead(
+        bot.port_1
+      );
+
+  if(
+    distance > 25
+  ){
+
+    bot.speed(
+      150,
+      150
+    );
+
+    bot.setLED(
+      PIN_LED_1,
+      LOW
+    );
+
+    bot.buzzerNoTone();
+
+  }else{
+
+    bot.speed(
+      0,
+      0
+    );
+
+    bot.setLED(
+      PIN_LED_1,
+      HIGH
+    );
+
+    bot.buzzerTone(
+      1200
+    );
+
+    delay(200);
+
+    bot.buzzerNoTone();
+
+    bot.speed(
+      -120,
+      120
+    );
+
+    delay(500);
+  }
+
+  delay(50);
+}`
+],
+
+[
+"نکات حرفه‌ای و خطاهای رایج",
+"قبل از استفاده از هر ماژول RJ، Init مناسب را اجرا کنید. سیم‌کشی را بررسی کنید، مقدارهای خام سنسور را در Serial Monitor ببینید، سرعت موتور را ابتدا پایین انتخاب کنید و محدوده مکانیکی سروو را در نظر بگیرید. همچنین delayهای بسیار بزرگ می‌توانند واکنش ربات را کند کنند.",
+`// قبل از هر ماژول RJ
+// Init مناسب آن را اجرا کنید.
+//
+// مثال:
+//
+// bot.rjSrfInit(bot.port_1);
+//
+// سپس در loop:
+//
+// float distance =
+//     bot.rjSrfRead(bot.port_1);`
+]
+
+];
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const sideNav =
+    document.getElementById("sideNav");
+
+const lessonsEl =
+    document.getElementById("lessons");
+
+
+/* =========================================================
+   RENDER LESSONS
+========================================================= */
+
+lessons.forEach(
+    (lesson,index)=>{
+
+        const number =
+            String(index+1)
+            .padStart(2,"0");
+
+        sideNav.insertAdjacentHTML(
+            "beforeend",
+            `
+            <a href="#lesson-${index+1}">
+                <span>${number}</span>
+                ${lesson[0]}
+            </a>
+            `
+        );
+
+        lessonsEl.insertAdjacentHTML(
+            "beforeend",
+            `
+            <article
+                class="lesson"
+                id="lesson-${index+1}">
+
+                <div class="lesson-head">
+
+                    <span class="num">
+                        ${number}
+                    </span>
+
+                    <div>
+
+                        <h2>
+                            ${lesson[0]}
+                        </h2>
+
+                        <p>
+                            ${lesson[1]}
+                        </p>
+
+                    </div>
+
+                </div>
+
+                ${
+                    lesson[2]
+                    ?
+                    `
+                    <div class="code-wrap">
+
+                        <button class="copy">
+                            کپی کد
+                        </button>
+
+                        <pre><code></code></pre>
+
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+                <div class="mini-note">
+                    💡 نکته:
+                    این درس را ابتدا به صورت مستقل آزمایش کنید
+                    و سپس آن را با پروژه‌های دیگر ترکیب کنید.
+                </div>
+
+                <div class="lesson-tools">
+
+                    <span class="lesson-tag">
+                        RobotixInnoBot
+                    </span>
+
+                    <span class="lesson-tag">
+                        آموزش عملی
+                    </span>
+
+                    ${
+                        lesson[2]
+                        ?
+                        `<span class="lesson-tag">
+                            کد کامل
+                        </span>`
+                        :
+                        ""
+                    }
+
+                </div>
+
+            </article>
+            `
+        );
+
+        if(lesson[2]){
+
+            const article =
+                lessonsEl.lastElementChild;
+
+            const code =
+                article.querySelector("code");
+
+            code.textContent =
+                lesson[2];
+        }
+    }
+);
+
+
+/* =========================================================
+   COPY BUTTON
+========================================================= */
+
+document
+.querySelectorAll(".copy")
+.forEach(button=>{
+
+    button.addEventListener(
+        "click",
+        async()=>{
+
+            const code =
+                button
+                .parentElement
+                .querySelector("code")
+                .innerText;
+
+            try{
+
+                await navigator
+                    .clipboard
+                    .writeText(code);
+
+                button.textContent =
+                    "✓ کپی شد";
+
+                setTimeout(
+                    ()=>{
+                        button.textContent =
+                            "کپی کد";
+                    },
+                    1200
+                );
+
+            }catch(error){
+
+                button.textContent =
+                    "کپی نشد";
+            }
+        }
+    );
+});
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+const search =
+    document.getElementById("search");
+
+search.addEventListener(
+    "input",
+    ()=>{
+
+        const q =
+            search.value
+            .trim()
+            .toLowerCase();
+
+        document
+        .querySelectorAll(".lesson")
+        .forEach(article=>{
+
+            const visible =
+                !q ||
+                article
+                .innerText
+                .toLowerCase()
+                .includes(q);
+
+            article.style.display =
+                visible ? "" : "none";
+        });
+    }
+);
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+const loginOverlay =
+    document.getElementById(
+        "loginOverlay"
+    );
+
+const usernameInput =
+    document.getElementById(
+        "loginUsername"
+    );
+
+const passwordInput =
+    document.getElementById(
+        "loginPassword"
+    );
+
+const loginBtn =
+    document.getElementById(
+        "loginBtn"
+    );
+
+const loginError =
+    document.getElementById(
+        "loginError"
+    );
+
+
+function tryLogin(){
+
+    const username =
+        usernameInput.value.trim();
+
+    const password =
+        passwordInput.value;
+
+    if(
+        username === LOGIN_USERNAME &&
+        password === LOGIN_PASSWORD
+    ){
+
+        loginOverlay.style.display =
+            "none";
+
+        document.body.classList
+            .remove("locked");
+
+        loginError.textContent = "";
+
+        usernameInput.value = "";
+        passwordInput.value = "";
+
+    }else{
+
+        loginError.textContent =
+            "نام کاربری یا رمز عبور اشتباه است.";
+
+        passwordInput.value = "";
+
+        passwordInput.focus();
+    }
+}
+
+
+loginBtn.addEventListener(
+    "click",
+    tryLogin
+);
+
+
+passwordInput.addEventListener(
+    "keydown",
+    event=>{
+
+        if(event.key === "Enter"){
+            tryLogin();
+        }
+    }
+);
+
+
+usernameInput.addEventListener(
+    "keydown",
+    event=>{
+
+        if(event.key === "Enter"){
+            passwordInput.focus();
+        }
+    }
+);
+
+
+/* =========================================================
+   DOWNLOAD MODAL
+========================================================= */
+
+const downloadModal =
+    document.getElementById(
+        "downloadModal"
+    );
+
+const downloadTitle =
+    document.getElementById(
+        "downloadTitle"
+    );
+
+const downloadPassword =
+    document.getElementById(
+        "downloadPassword"
+    );
+
+const downloadError =
+    document.getElementById(
+        "downloadError"
+    );
+
+const downloadConfirm =
+    document.getElementById(
+        "downloadConfirm"
+    );
+
+const downloadCancel =
+    document.getElementById(
+        "downloadCancel"
+    );
+
+let downloadType = null;
+
+
+function openDownloadModal(type){
+
+    downloadType = type;
+
+    if(type === "pdf"){
+
+        downloadTitle.textContent =
+            "🔐 رمز دریافت PDF";
+
+    }else{
+
+        downloadTitle.textContent =
+            "🔐 رمز دریافت Python";
+    }
+
+    downloadPassword.value = "";
+    downloadError.textContent = "";
+
+    downloadModal.classList.add(
+        "show"
+    );
+
+    setTimeout(
+        ()=>{
+            downloadPassword.focus();
+        },
+        50
+    );
+}
+
+
+function closeDownloadModal(){
+
+    downloadModal.classList.remove(
+        "show"
+    );
+
+    downloadPassword.value = "";
+    downloadError.textContent = "";
+    downloadType = null;
+}
+
+
+downloadCancel.addEventListener(
+    "click",
+    closeDownloadModal
+);
+
+
+downloadModal.addEventListener(
+    "click",
+    event=>{
+
+        if(
+            event.target ===
+            downloadModal
+        ){
+            closeDownloadModal();
+        }
+    }
+);
+
+
+/* =========================================================
+   PYTHON DOWNLOAD
+   فایل Python باید کنار index.html باشد
+========================================================= */
+
+function downloadPython(){
+
+    const link =
+        document.createElement("a");
+
+    link.href =
+        "./RobotixInnoBot_Logo_Converter.py";
+
+    link.download =
+        "RobotixInnoBot_Logo_Converter.py";
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    link.remove();
+}
+
+
+/* =========================================================
+   PDF
+========================================================= */
+
+function generatePDF(){
+
+    const oldTitle =
+        document.title;
+
+    document.title =
+        "صفر تا صد برنامه‌نویسی اینوبات";
+
+    window.print();
+
+    setTimeout(
+        ()=>{
+            document.title =
+                oldTitle;
+        },
+        1500
+    );
+}
+
+
+/* =========================================================
+   CONFIRM DOWNLOAD
+========================================================= */
+
+downloadConfirm.addEventListener(
+    "click",
+    ()=>{
+
+        if(
+            downloadPassword.value !==
+            DOWNLOAD_PASSWORD
+        ){
+
+            downloadError.textContent =
+                "❌ رمز دانلود اشتباه است.";
+
+            downloadPassword.select();
+
+            return;
+        }
+
+        const type =
+            downloadType;
+
+        closeDownloadModal();
+
+        if(type === "pdf"){
+
+            generatePDF();
+
+        }else if(type === "python"){
+
+            downloadPython();
+        }
+    }
+);
+
+
+downloadPassword.addEventListener(
+    "keydown",
+    event=>{
+
+        if(event.key === "Enter"){
+
+            downloadConfirm.click();
+        }
+    }
+);
+
+
+/* =========================================================
+   HEADER BUTTONS
+========================================================= */
+
+document
+.getElementById("pdfBtn")
+.addEventListener(
+    "click",
+    ()=>{
+
+        if(
+            loginOverlay.style.display !==
+            "none"
+        ){
+
+            loginError.textContent =
+                "ابتدا وارد جزوه شوید.";
+
+            usernameInput.focus();
+
+            return;
+        }
+
+        openDownloadModal("pdf");
+    }
+);
+
+
+document
+.getElementById("pythonBtn")
+.addEventListener(
+    "click",
+    ()=>{
+
+        if(
+            loginOverlay.style.display !==
+            "none"
+        ){
+
+            loginError.textContent =
+                "ابتدا وارد جزوه شوید.";
+
+            usernameInput.focus();
+
+            return;
+        }
+
+        openDownloadModal("python");
+    }
+);
+
+
+/* =========================================================
+   ESC CLOSE MODAL
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event=>{
+
+        if(
+            event.key === "Escape" &&
+            downloadModal.classList
+            .contains("show")
+        ){
+
+            closeDownloadModal();
+        }
+    }
+);
+
+
+/* =========================================================
+   INITIAL STATE
+========================================================= */
+
+document.body.classList.add(
+    "locked"
+);
+
+</script>
+
+</body>
+</html>
