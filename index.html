@@ -769,13 +769,13 @@ footer{
     <button
         id="pdfBtn"
         class="header-btn">
-        📄 خروجی PDF
+        📄 دانلود جزوه کامل (PDF)
     </button>
 
     <button
         id="pythonBtn"
         class="header-btn">
-        🐍 دانلود Python
+        🐍 دانلود کد مبدل عکس LCD
     </button>
 
 </header>
@@ -819,43 +819,116 @@ footer{
 
             <div class="stats">
 
-                <div class="stat">
-                    <b>35</b>
-                    درس و پروژه
-                </div>
+              
+<div class="stats">
 
-                <div class="stat">
-                    <b>کد کامل</b>
-                    مثال‌های آماده
-                </div>
+    <div class="stat">
+        <b>35</b>
+        <span>درس و پروژه</span>
+    </div>
 
-                <div class="stat">
-                    <b>RJ 1–12</b>
-                    ساختار پورت‌ها
-                </div>
+    <div class="stat">
+        <b>RJ 1–12</b>
+        <span>ساختار پورت‌ها</span>
+    </div>
 
-                <div class="stat">
-                    <b>یاشار بیگی</b>
-                    نویسنده
-                </div>
+</div>
+
+<style>
+    .stats {
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        gap: 70px;
+
+        text-align: center;
+
+        direction: rtl;
+    }
+
+    .stat {
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center;
+
+        text-align: center;
+
+        min-width: 170px;
+    }
+
+    .stat b {
+        display: block;
+
+        margin-bottom: 8px;
+
+        font-family:
+            "Vazirmatn",
+            "Tahoma",
+            sans-serif;
+
+        font-size: 30px;
+
+        font-weight: 900;
+
+        background: linear-gradient(
+            90deg,
+            #4de1ff,
+            #8b5cf6
+        );
+
+        -webkit-background-clip: text;
+        background-clip: text;
+
+        color: transparent;
+    }
+
+    .stat span {
+        font-family:
+            "Vazirmatn",
+            "Tahoma",
+            sans-serif;
+
+        font-size: 16px;
+
+        font-weight: 600;
+
+        color: #a7b6c8;
+    }
+
+    @media (max-width: 600px) {
+
+        .stats {
+            gap: 25px;
+        }
+
+        .stat {
+            min-width: 130px;
+        }
+
+        .stat b {
+            font-size: 24px;
+        }
+
+        .stat span {
+            font-size: 14px;
+        }
+    }
+</style>
+
+
+
+                
 
             </div>
 
             <div class="cover-grid">
 
-                <div class="cover-card">
-                    🎯 آموزش از پایه تا پروژه
-                </div>
-
-                <div class="cover-card">
-                    🧩 سنسور، موتور، سروو و نمایشگر
-                </div>
-
-                <div class="cover-card">
-                    🚀 مثال‌های ترکیبی واقعی
-                </div>
-
-            </div>
+  
 
         </section>
 
@@ -2493,31 +2566,516 @@ lessons.forEach(
                     ""
                 }
 
-                <div class="mini-note">
-                    💡 نکته:
-                    این درس را ابتدا به صورت مستقل آزمایش کنید
-                    و سپس آن را با پروژه‌های دیگر ترکیب کنید.
-                </div>
+<div class="author-card">
+    <div class="author-glow"></div>
 
-                <div class="lesson-tools">
+    <div class="author-content">
+        <div class="author-symbol">
+            ✦
+        </div>
 
-                    <span class="lesson-tag">
-                        RobotixInnoBot
-                    </span>
+        <div class="author-text">
+            <span class="author-title">نویسنده</span>
+            <span class="author-name">یاشار بیگی</span>
+        </div>
 
-                    <span class="lesson-tag">
-                        آموزش عملی
-                    </span>
+        <div class="author-symbol">
+            ✦
+        </div>
+    </div>
+</div>
 
-                    ${
-                        lesson[2]
-                        ?
-                        `<span class="lesson-tag">
-                            کد کامل
-                        </span>`
-                        :
-                        ""
-                    }
+<style>
+    /* ================================
+       YASHAR BEIGI — PREMIUM AUTHOR
+       ================================ */
+
+    .author-card {
+        position: relative;
+
+        width: fit-content;
+        margin: 28px auto;
+
+        padding: 2px;
+
+        border-radius: 22px;
+
+        background: linear-gradient(
+            120deg,
+            #4de1ff,
+            #8b5cf6,
+            #4de1ff,
+            #ffffff,
+            #4de1ff
+        );
+
+        background-size: 300% 300%;
+
+        animation: borderFlow 6s ease infinite;
+
+        box-shadow:
+            0 12px 40px rgba(0, 0, 0, 0.25),
+            0 0 35px rgba(77, 225, 255, 0.12);
+    }
+
+    .author-content {
+        position: relative;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 18px;
+
+        padding: 15px 30px;
+
+        border-radius: 20px;
+
+        background:
+            linear-gradient(
+                135deg,
+                rgba(7, 17, 31, 0.97),
+                rgba(12, 25, 43, 0.94)
+            );
+
+        backdrop-filter: blur(18px);
+
+        overflow: hidden;
+    }
+
+    /* خط نور متحرک */
+
+    .author-content::before {
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+        left: -120%;
+
+        width: 80%;
+        height: 100%;
+
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.16),
+            transparent
+        );
+
+        transform: skewX(-25deg);
+
+        animation: shine 4s ease-in-out infinite;
+    }
+
+    /* نور اطراف */
+
+    .author-glow {
+        position: absolute;
+
+        inset: -15px;
+
+        border-radius: 30px;
+
+        background: linear-gradient(
+            90deg,
+            rgba(77,225,255,0.18),
+            rgba(139,92,246,0.18),
+            rgba(77,225,255,0.18)
+        );
+
+        filter: blur(25px);
+
+        opacity: 0.55;
+
+        z-index: -1;
+
+        animation: glowPulse 3s ease-in-out infinite;
+    }
+
+    /* متن */
+
+    .author-text {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        direction: rtl;
+
+        white-space: nowrap;
+
+        font-family:
+            "Vazirmatn",
+            "Tahoma",
+            sans-serif;
+    }
+
+    .author-title {
+        font-size: 16px;
+        font-weight: 500;
+
+        color: #94a3b8;
+    }
+
+    .author-name {
+        position: relative;
+
+        font-size: 23px;
+        font-weight: 900;
+
+        letter-spacing: 0.4px;
+
+        background: linear-gradient(
+            90deg,
+            #4de1ff,
+            #ffffff,
+            #8b5cf6,
+            #ffffff,
+            #4de1ff
+        );
+
+        background-size: 300% auto;
+
+        -webkit-background-clip: text;
+        background-clip: text;
+
+        color: transparent;
+
+        animation: textFlow 5s linear infinite;
+
+        filter:
+            drop-shadow(
+                0 0 10px
+                rgba(77,225,255,0.25)
+            );
+    }
+
+    /* ستاره‌ها */
+
+    .author-symbol {
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        width: 30px;
+        height: 30px;
+
+        flex-shrink: 0;
+
+        border-radius: 50%;
+
+        font-size: 15px;
+
+        color: #4de1ff;
+
+        background:
+            radial-gradient(
+                circle,
+                rgba(77,225,255,0.18),
+                transparent 70%
+            );
+
+        border: 1px solid rgba(
+            77,
+            225,
+            255,
+            0.25
+        );
+
+        box-shadow:
+            0 0 15px
+            rgba(77,225,255,0.18);
+
+        animation:
+            starPulse 2.5s ease-in-out infinite;
+    }
+
+    .author-symbol:last-child {
+        animation-delay: 1.2s;
+    }
+
+    /* Hover */
+
+    .author-card {
+        transition:
+            transform 0.35s ease,
+            filter 0.35s ease;
+    }
+
+    .author-card:hover {
+        transform:
+            translateY(-5px)
+            scale(1.035);
+
+        filter:
+            brightness(1.12);
+    }
+
+    .author-card:hover .author-content {
+        box-shadow:
+            inset 0 0 30px
+            rgba(77,225,255,0.05);
+    }
+
+    /* ================================
+       ANIMATIONS
+       ================================ */
+
+    @keyframes borderFlow {
+
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    @keyframes textFlow {
+
+        0% {
+            background-position: 0% center;
+        }
+
+        100% {
+            background-position: 300% center;
+        }
+    }
+
+    @keyframes shine {
+
+        0% {
+            left: -120%;
+        }
+
+        45%,
+        100% {
+            left: 140%;
+        }
+    }
+
+    @keyframes glowPulse {
+
+        0%,
+        100% {
+            opacity: 0.35;
+            transform: scale(0.98);
+        }
+
+        50% {
+            opacity: 0.7;
+            transform: scale(1.03);
+        }
+    }
+
+    @keyframes starPulse {
+
+        0%,
+        100% {
+            transform:
+                scale(1)
+                rotate(0deg);
+
+            box-shadow:
+                0 0 12px
+                rgba(77,225,255,0.15);
+        }
+
+        50% {
+            transform:
+                scale(1.15)
+                rotate(180deg);
+
+            box-shadow:
+                0 0 22px
+                rgba(77,225,255,0.4);
+        }
+    }
+
+    /* ================================
+       MOBILE
+       ================================ */
+
+    @media (max-width: 600px) {
+
+        .author-card {
+            max-width: 90%;
+        }
+
+        .author-content {
+            padding: 13px 20px;
+            gap: 12px;
+        }
+
+        .author-name {
+            font-size: 19px;
+        }
+
+        .author-title {
+            font-size: 14px;
+        }
+
+        .author-symbol {
+            width: 26px;
+            height: 26px;
+        }
+    }
+</style>
+
+
+                
+<div class="lesson-tools">
+
+    <span class="lesson-tag">
+        <span class="robot-icon">🤖</span>
+        <span>ROBOTEX_SHAHREKORD</span>
+    </span>
+
+</div>
+
+<style>
+    .lesson-tools {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 18px 0;
+    }
+
+    .lesson-tag {
+        position: relative;
+
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+
+        padding: 11px 22px;
+
+        font-family: "Vazirmatn", "Tahoma", sans-serif;
+        font-size: 16px;
+        font-weight: 800;
+        letter-spacing: 0.3px;
+
+        color: #e8faff;
+
+        background:
+            linear-gradient(
+                135deg,
+                rgba(77, 225, 255, 0.14),
+                rgba(139, 92, 246, 0.14)
+            );
+
+        border: 1px solid rgba(77, 225, 255, 0.35);
+        border-radius: 16px;
+
+        box-shadow:
+            0 6px 25px rgba(0, 0, 0, 0.18),
+            0 0 20px rgba(77, 225, 255, 0.08),
+            inset 0 0 18px rgba(255,255,255,0.03);
+
+        backdrop-filter: blur(12px);
+
+        overflow: hidden;
+
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease,
+            border-color 0.3s ease;
+    }
+
+    .lesson-tag::before {
+        content: "";
+
+        position: absolute;
+        top: 0;
+        left: -100%;
+
+        width: 70%;
+        height: 100%;
+
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.18),
+            transparent
+        );
+
+        transform: skewX(-20deg);
+
+        transition: left 0.6s ease;
+    }
+
+    .lesson-tag:hover {
+        transform: translateY(-3px) scale(1.03);
+
+        border-color: rgba(77, 225, 255, 0.7);
+
+        box-shadow:
+            0 10px 35px rgba(77, 225, 255, 0.16),
+            0 0 30px rgba(139, 92, 246, 0.1),
+            inset 0 0 22px rgba(77, 225, 255, 0.06);
+    }
+
+    .lesson-tag:hover::before {
+        left: 140%;
+    }
+
+    .robot-icon {
+        font-size: 20px;
+
+        filter:
+            drop-shadow(0 0 7px rgba(77,225,255,0.55));
+
+        animation: robotFloat 2.5s ease-in-out infinite;
+    }
+
+    .lesson-tag span:last-child {
+        background: linear-gradient(
+            90deg,
+            #4de1ff,
+            #ffffff,
+            #8b5cf6,
+            #4de1ff
+        );
+
+        background-size: 250% auto;
+
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+
+        animation: robotText 4s linear infinite;
+    }
+
+    @keyframes robotFloat {
+        0%, 100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-3px);
+        }
+    }
+
+    @keyframes robotText {
+        0% {
+            background-position: 0% center;
+        }
+
+        100% {
+            background-position: 250% center;
+        }
+    }
+</style>
+
+
+
+                
 
                 </div>
 
